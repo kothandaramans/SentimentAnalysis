@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Navigation -->
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            {% include 'nav.html' %}
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#uploadtextmodal" data-toggle="modal" data-target="#uploadtextmodal">Upload a Text</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br><br><br><br>
+
+    <div class="container">
+        <div class="row">
+            {% include 'messages.html' %}
+            <div class="col-sm-6">
+                <form method = "post" action={% url 'txtanalyser' %}>
+                    {% csrf_token %}
+                    <div class="form-group text-center">
+                        <textarea class="form-control" rows="22" id="text" name="text">{{contents}}</textarea>
+                        <br>
+                        <input type="submit" class="btn btn-primary" value="Analyze it"/>
+                    </div>
+                </form>
+            </div>
+
+            {% include 'result_txt2aud.html' %}
+            
+        </div>
+
+    </div>
+
+{% load static %}
+    
+<div class="modal fade" role="dialog" id = "uploadtextmodal" style="text-align:center">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h4>Upload a Text</h4>
+    </div>
+    <form method = "post" action={% url 'txtupload' %} enctype="multipart/form-data">
+       {% csrf_token %}
+            <input type="file" class = "form-control" name="txtfile" accept=".txt">
+            <br>
+            <input type = "submit" class = "btn btn-primary" value ="submit">
+            <hr>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

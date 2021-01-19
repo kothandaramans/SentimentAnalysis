@@ -1,0 +1,16 @@
+asgiref==3.2.3
+certifi==2019.11.28
+chardet==3.0.4
+Django==3.0
+idna==2.8
+nltk==3.4.5
+Pillow==6.2.1
+pydub==0.23.1
+pytesseract==0.3.1
+pytz==2019.3
+requests==2.22.0
+six==1.13.0
+SpeechRecognition==3.8.1
+sqlparse==0.3.0
+urllib3==1.25.7
+vaderSentiment==3.2.1

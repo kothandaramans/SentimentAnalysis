@@ -1,0 +1,26 @@
+           
+            <div class="col-sm-6">
+                {% load static %}
+                <div class="thumbnail">
+                    <img src="{% static 'images/positive.png' %}" alt="positive">
+                    <div class="caption text-center">
+                        <h4><b>Positive</b></h4>
+                        <p>{{score.positive | floatformat:'2'}} %</p>
+                    </div>
+                </div>
+                <div class="thumbnail">
+                    <img src="{% static 'images/neutral.png' %}" alt="neutral">
+                    <div class="caption text-center">
+                        <h4><b>Neutral</b></h4>
+                        <p>{{score.neutral | floatformat:'2'}} %</p>
+                    </div>
+                </div>
+                <div class="thumbnail">
+                    <img src="{% static 'images/negative.png' %}" alt="negative">
+                    <div class="caption text-center">
+                        <h4><b>Negative</b></h4>
+                        <p>{{score.negative | floatformat:'2'}} %</p>
+                    </div>
+                </div>
+                
+            </div>

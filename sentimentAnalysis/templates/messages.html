@@ -1,0 +1,30 @@
+{% if messages %}
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert alert-success">
+                <strong>Success!</strong> {{ message }}
+            </div>
+        {% endif %}
+                    
+        {% if  message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="alert alert-danger">
+                <strong>error!</strong> {{ message }}
+            </div>
+        {% endif %}
+
+        {% if  message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+            <div class="alert alert-warning">
+                <strong>Warning!</strong> {{ message }}
+            </div>
+        {% endif %}
+
+        {% if  message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+            <div class="alert alert-info">
+                <strong>Info!</strong> {{ message }}
+            </div>
+        {% endif %}
+    
+      <!-- {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %} -->
+    
+    {% endfor %}
+{% endif %}

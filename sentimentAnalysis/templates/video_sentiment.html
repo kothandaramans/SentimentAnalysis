@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% load static %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+
+             {% include 'nav.html' %}
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#uploadvideomodal" data-toggle="modal" data-target="#uploadvideomodal">Upload a Video</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <br><br><br><br>
+    
+    <div class="container">
+        <div class="row">
+
+            {% include 'messages.html' %}
+
+            <div class="col-sm-6">
+                <form method = "post" action={% url 'vidextractor' %}>
+                    {% csrf_token %}
+                    <div class="form-group text-center">
+                        <video width="100%" height="471px" controls>
+                            <source src="{{ contents }}" type="video/mp4">
+                            You browser does not support the video tag
+                        </video>
+                        <br><br>
+                        <input type="submit" class="btn btn-primary" value="Extract it"/>
+                    </div>
+                </form>
+            </div>
+ 
+            <div class="col-sm-6">
+                
+                <form method = "post" action={% url 'vidanalyser' %}>
+                    {% csrf_token %}
+                    <div class="form-group text-center">
+                        <textarea class="form-control" rows="22" id="text" name="text">{{txt}}</textarea>
+                        <br>
+                        <input type="submit" class="btn btn-primary" value="Analyze it"/>
+                    </div>
+                </form>
+                 
+            </div>
+        </div>
+
+        <hr>
+            <div class="row">
+            
+                {% include 'result_img2vid.html' %}
+
+            </div>
+
+    </div>
+
+
+<div class="modal fade" role="dialog" id = "uploadvideomodal" style="text-align:center">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h4>Upload a Video</h4>
+    </div>
+    <form method = "post" action={% url 'vidupload' %} enctype="multipart/form-data">
+       {% csrf_token %}
+            <input type="file" class = "form-control" name="vidfile" accept="video/*">
+            <br>
+            <input type = "submit" class = "btn btn-primary" value ="submit">
+            <hr>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
